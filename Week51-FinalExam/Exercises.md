@@ -381,7 +381,7 @@ order_items(item_id PK, order_id FK→orders, product_id FK→products, quantity
 Each table has no partial or transitive dependencies.
 </details>
 
-**C2.** Given this table and functional dependencies, determine the highest normal form and normalize if needed:
+**C2.** Given this table and these business rules, determine the highest normal form and normalize if needed:
 
 > [!NOTE]
 > ***Your Answer***
@@ -396,11 +396,12 @@ Each table has no partial or transitive dependencies.
 ```
 Table: shipments(order_id, product_id, warehouse_id, warehouse_city, ship_date, quantity)
 Primary Key: (order_id, product_id)
-
-FDs:
-  (order_id, product_id) → warehouse_id, ship_date, quantity
-  warehouse_id → warehouse_city
 ```
+
+**Business rules:**
+
+- The warehouse, ship date, and quantity belong to the order-and-product pair.
+- Each warehouse is in one city.
 
 > [!NOTE]
 > ***Your Answer***
@@ -414,7 +415,7 @@ FDs:
 <details>
 <summary>Model Answer</summary>
 
-**Current normal form:** 2NF (no partial dependencies since all non-key attributes depend on the full key). But there is a **transitive dependency**: `(order_id, product_id) → warehouse_id → warehouse_city`.
+**Current normal form:** 2NF (no partial dependencies, because the warehouse, ship date, and quantity all depend on the full key). But there is a **transitive dependency**: the warehouse city depends on the warehouse, and the warehouse depends on the order-and-product pair.
 
 This violates **3NF**.
 
@@ -589,7 +590,6 @@ Print this page and check off each item you feel confident about. Items left unc
 - [ ] I can use COALESCE and NULLIF
 
 ### Database Design
-- [ ] I can identify functional dependencies in a table
 - [ ] I can determine whether a table is in 1NF, 2NF, 3NF, or BCNF
 - [ ] I can normalize a table to 3NF step by step
 - [ ] I can design a schema from business requirements

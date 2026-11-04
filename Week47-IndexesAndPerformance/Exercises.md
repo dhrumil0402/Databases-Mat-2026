@@ -1,7 +1,7 @@
 # Week 47 — Exercises: Indexes and Query Performance
 
 > [!IMPORTANT]
-> ***How to Complete These Exercises***
+> **_How to Complete These Exercises_**
 > Write your answers directly in the highlighted **Your Answer** / **Your SQL** fields below each task. Replace the placeholder text with your own work before submitting.
 
 These exercises walk you through measuring, creating, and evaluating indexes on your TrailShop database. You will use PostgreSQL's `EXPLAIN ANALYZE` to gather real execution data and make evidence-based decisions about indexing.
@@ -37,12 +37,12 @@ WHERE oi.order_id = 42;
 Record your results in a table like this:
 
 | Query | Scan Type | Exec Time (ms) | Rows Removed by Filter |
-|-------|-----------|-----------------|------------------------|
-| A     |           |                 |                        |
-| B     |           |                 |                        |
-| C     |           |                 |                        |
-| D     |           |                 |                        |
-| E     |           |                 |                        |
+| ----- | --------- | -------------- | ---------------------- |
+| A     |           |                |                        |
+| B     |           |                |                        |
+| C     |           |                |                        |
+| D     |           |                |                        |
+| E     |           |                |                        |
 
 ### Step 2 — Create Indexes
 
@@ -61,25 +61,21 @@ CREATE INDEX idx_product_categories_category_id ON product_categories (category_
 Run the same five queries with `EXPLAIN ANALYZE` again. Fill in your comparison table:
 
 | Query | Before Scan | Before Time (ms) | After Scan | After Time (ms) | Improvement Factor |
-|-------|-------------|-------------------|------------|------------------|--------------------|
-| A     |             |                   |            |                  |                    |
-| B     |             |                   |            |                  |                    |
-| C     |             |                   |            |                  |                    |
-| D     |             |                   |            |                  |                    |
-| E     |             |                   |            |                  |                    |
+| ----- | ----------- | ---------------- | ---------- | --------------- | ------------------ |
+| A     |             |                  |            |                 |                    |
+| B     |             |                  |            |                 |                    |
+| C     |             |                  |            |                 |                    |
+| D     |             |                  |            |                 |                    |
+| E     |             |                  |            |                 |                    |
 
 ### Step 4 — Recommendation
 
 Write a paragraph (4–6 sentences) recommending which indexes to keep in production and why. Consider table size, query frequency, and write overhead. If any index showed minimal improvement, explain why you might drop it.
 
 > [!NOTE]
-> ***Your Answer***
+> **_Your Answer_**
 >
-> *(Write your answer here.)*
->
->
->
->
+> _(Write your answer here.)_
 
 ---
 
@@ -90,86 +86,51 @@ Answer the following questions in your own words. See the corresponding theory s
 **Question 1** — What is a database index, and why is it needed? (See Theory Section 1)
 
 > [!NOTE]
-> ***Your Answer***
+> **_Your Answer_**
 >
-> *(Write your answer here.)*
->
->
->
->
-
+> _(Write your answer here.)_
 
 **Question 2** — Explain the difference between B-tree search at O(log n) and sequential scan at O(n). If a table has 1,000,000 rows, approximately how many comparisons does each approach need? (See Theory Section 2)
 
 > [!NOTE]
-> ***Your Answer***
+> **_Your Answer_**
 >
-> *(Write your answer here.)*
->
->
->
->
-
+> _(Write your answer here.)_
 
 **Question 3** — PostgreSQL automatically creates indexes on primary keys. Why doesn't it also auto-index foreign key columns? (See Theory Section 3)
 
 > [!NOTE]
-> ***Your Answer***
+> **_Your Answer_**
 >
-> *(Write your answer here.)*
->
->
->
->
-
+> _(Write your answer here.)_
 
 **Question 4** — What is the difference between an Index Scan and an Index Only Scan? When can PostgreSQL use Index Only Scan? (See Theory Section 4)
 
 > [!NOTE]
-> ***Your Answer***
+> **_Your Answer_**
 >
-> *(Write your answer here.)*
->
->
->
->
-
+> _(Write your answer here.)_
 
 **Question 5** — Give three situations where you should NOT create an index. Explain each briefly. (See Theory Section 5)
 
 > [!NOTE]
-> ***Your Answer***
+> **_Your Answer_**
 >
-> *(Write your answer here.)*
->
->
->
->
-
+> _(Write your answer here.)_
 
 **Question 6** — What does `EXPLAIN ANALYZE` show that plain `EXPLAIN` does not? Why does this matter? (See Theory Section 6)
 
 > [!NOTE]
-> ***Your Answer***
+> **_Your Answer_**
 >
-> *(Write your answer here.)*
->
->
->
->
-
+> _(Write your answer here.)_
 
 **Question 7** — What is a partial index? Give one concrete example where a partial index on a TrailShop table would be useful. (See Theory Section 7)
 
 > [!NOTE]
-> ***Your Answer***
+> **_Your Answer_**
 >
-> *(Write your answer here.)*
->
->
->
->
-
+> _(Write your answer here.)_
 
 **Question 8** — What is the leftmost prefix rule for multi-column indexes? If you create `CREATE INDEX idx ON orders (customer_id, order_date)`, which of the following queries can use the index and why?
 
@@ -185,18 +146,16 @@ SELECT * FROM orders WHERE customer_id = 5 AND order_date = '2026-01-15';
 (See Theory Section 8)
 
 > [!NOTE]
-> ***Your Answer***
+> **_Your Answer_**
 >
-> *(Write your answer here.)*
->
->
->
->
-
+> _(Write your answer here.)_
 
 ---
 
-## 3. EXPLAIN Reading Exercise
+## 3. EXPLAIN Reading Exercise (Optional)
+
+> [!TIP]
+> **Recommended practice.** Do this section. It is not required to finish the TrailShop project. It prepares you for the exams.
 
 Below are four `EXPLAIN ANALYZE` outputs. For each one, identify:
 
@@ -216,22 +175,16 @@ Execution Time: 0.312 ms
 ```
 
 **Your analysis:**
+
 - Scan type:
 - Estimated vs actual rows:
 - Execution time:
 - Would an index help? Which one?
 
-
-
-
 > [!NOTE]
-> ***Your Answer***
+> **_Your Answer_**
 >
-> *(Write your answer here.)*
->
->
->
->
+> _(Write your answer here.)_
 
 ### Output B — Index Scan
 
@@ -243,19 +196,16 @@ Execution Time: 0.041 ms
 ```
 
 **Your analysis:**
+
 - Scan type:
 - Estimated vs actual rows:
 - Execution time:
 - Is the index effective here?
 
 > [!NOTE]
-> ***Your Answer***
+> **_Your Answer_**
 >
-> *(Write your answer here.)*
->
->
->
->
+> _(Write your answer here.)_
 
 ### Output C — Bitmap Index Scan
 
@@ -270,19 +220,16 @@ Execution Time: 0.132 ms
 ```
 
 **Your analysis:**
+
 - Scan type:
 - Estimated vs actual rows:
 - Execution time:
 - Why did PostgreSQL choose a Bitmap scan instead of a plain Index Scan?
 
 > [!NOTE]
-> ***Your Answer***
+> **_Your Answer_**
 >
-> *(Write your answer here.)*
->
->
->
->
+> _(Write your answer here.)_
 
 ### Output D — Hash Join
 
@@ -298,47 +245,52 @@ Execution Time: 1.340 ms
 ```
 
 **Your analysis:**
+
 - Scan type:
 - Estimated vs actual rows:
 - Execution time:
 - Would adding an index improve this join? Which column?
 
 > [!NOTE]
-> ***Your Answer***
+> **_Your Answer_**
 >
-> *(Write your answer here.)*
->
->
->
->
+> _(Write your answer here.)_
 
 ---
 
-## 4. Index Design Exercise
+## 4. Index Design Exercise (Optional)
+
+> [!TIP]
+> **Recommended practice.** Do this section. It is not required to finish the TrailShop project. It prepares you for the exams.
 
 For each query below, recommend the best index(es), explain why, and predict the scan type PostgreSQL will use after indexing.
 
 **Query 1**
+
 ```sql
 SELECT * FROM customers WHERE email = 'anna.korhonen@email.fi';
 ```
 
 **Query 2**
+
 ```sql
 SELECT * FROM orders WHERE customer_id = 5 ORDER BY order_date DESC;
 ```
 
 **Query 3**
+
 ```sql
 SELECT product_id, SUM(quantity) FROM order_items GROUP BY product_id;
 ```
 
 **Query 4**
+
 ```sql
 SELECT * FROM products WHERE price BETWEEN 50 AND 100;
 ```
 
 **Query 5**
+
 ```sql
 SELECT p.name, c.name AS category
 FROM products p
@@ -348,21 +300,25 @@ WHERE pc.category_id = 2;
 ```
 
 **Query 6**
+
 ```sql
 SELECT * FROM payments WHERE order_id = 88;
 ```
 
 **Query 7**
+
 ```sql
 SELECT * FROM orders WHERE status = 'shipped' AND order_date > '2026-06-01';
 ```
 
 **Query 8**
+
 ```sql
 SELECT customer_id, COUNT(*) FROM orders GROUP BY customer_id HAVING COUNT(*) > 5;
 ```
 
 **Query 9**
+
 ```sql
 SELECT oi.quantity, p.name
 FROM order_items oi
@@ -371,28 +327,32 @@ WHERE oi.order_id = 100;
 ```
 
 **Query 10**
+
 ```sql
 SELECT * FROM products WHERE name LIKE 'Trail%';
 ```
 
 For each query, fill in:
 
-| # | Recommended Index | Why It Helps | Expected Scan Type |
-|---|-------------------|--------------|--------------------|
-| 1 |                   |              |                    |
-| 2 |                   |              |                    |
-| 3 |                   |              |                    |
-| 4 |                   |              |                    |
-| 5 |                   |              |                    |
-| 6 |                   |              |                    |
-| 7 |                   |              |                    |
-| 8 |                   |              |                    |
-| 9 |                   |              |                    |
-| 10|                   |              |                    |
+| #   | Recommended Index | Why It Helps | Expected Scan Type |
+| --- | ----------------- | ------------ | ------------------ |
+| 1   |                   |              |                    |
+| 2   |                   |              |                    |
+| 3   |                   |              |                    |
+| 4   |                   |              |                    |
+| 5   |                   |              |                    |
+| 6   |                   |              |                    |
+| 7   |                   |              |                    |
+| 8   |                   |              |                    |
+| 9   |                   |              |                    |
+| 10  |                   |              |                    |
 
 ---
 
 ## 5. Performance Comparison Exercise
+
+> [!TIP]
+> **Recommended practice.** Do this section. It is not required to finish the TrailShop project. It prepares you for the exams.
 
 For each query below, follow these steps:
 
@@ -412,24 +372,19 @@ SELECT * FROM order_items WHERE order_id = 55;
 CREATE INDEX idx_oi_order_id ON order_items (order_id);
 ```
 
-| Metric | Before | After |
-|--------|--------|-------|
-| Scan type | | |
-| Execution time (ms) | | |
-| Rows examined | | |
-| Improvement factor | — | |
+| Metric              | Before | After |
+| ------------------- | ------ | ----- |
+| Scan type           |        |       |
+| Execution time (ms) |        |       |
+| Rows examined       |        |       |
+| Improvement factor  | —      |       |
 
 **Explanation:**
 
 > [!NOTE]
-> ***Your Answer***
+> **_Your Answer_**
 >
-> *(Write your answer here.)*
->
->
->
->
-
+> _(Write your answer here.)_
 
 ### Comparison 2
 
@@ -446,24 +401,19 @@ CREATE INDEX idx_products_price ON products (price);
 CREATE INDEX idx_products_cat_price ON products (category_id, price);
 ```
 
-| Metric | Before | After |
-|--------|--------|-------|
-| Scan type | | |
-| Execution time (ms) | | |
-| Rows examined | | |
-| Improvement factor | — | |
+| Metric              | Before | After |
+| ------------------- | ------ | ----- |
+| Scan type           |        |       |
+| Execution time (ms) |        |       |
+| Rows examined       |        |       |
+| Improvement factor  | —      |       |
 
 **Explanation:**
 
 > [!NOTE]
-> ***Your Answer***
+> **_Your Answer_**
 >
-> *(Write your answer here.)*
->
->
->
->
-
+> _(Write your answer here.)_
 
 ### Comparison 3
 
@@ -475,24 +425,19 @@ SELECT * FROM customers WHERE email = 'test.user@example.com';
 CREATE UNIQUE INDEX idx_customers_email ON customers (email);
 ```
 
-| Metric | Before | After |
-|--------|--------|-------|
-| Scan type | | |
-| Execution time (ms) | | |
-| Rows examined | | |
-| Improvement factor | — | |
+| Metric              | Before | After |
+| ------------------- | ------ | ----- |
+| Scan type           |        |       |
+| Execution time (ms) |        |       |
+| Rows examined       |        |       |
+| Improvement factor  | —      |       |
 
 **Explanation:**
 
 > [!NOTE]
-> ***Your Answer***
+> **_Your Answer_**
 >
-> *(Write your answer here.)*
->
->
->
->
-
+> _(Write your answer here.)_
 
 ### Comparison 4
 
@@ -507,24 +452,19 @@ GROUP BY order_id;
 CREATE INDEX idx_oi_order_id_covering ON order_items (order_id) INCLUDE (quantity, unit_price);
 ```
 
-| Metric | Before | After |
-|--------|--------|-------|
-| Scan type | | |
-| Execution time (ms) | | |
-| Rows examined | | |
-| Improvement factor | — | |
+| Metric              | Before | After |
+| ------------------- | ------ | ----- |
+| Scan type           |        |       |
+| Execution time (ms) |        |       |
+| Rows examined       |        |       |
+| Improvement factor  | —      |       |
 
 **Explanation:**
 
 > [!NOTE]
-> ***Your Answer***
+> **_Your Answer_**
 >
-> *(Write your answer here.)*
->
->
->
->
-
+> _(Write your answer here.)_
 
 ### Comparison 5
 
@@ -536,38 +476,34 @@ SELECT * FROM orders WHERE status = 'pending';
 CREATE INDEX idx_orders_pending ON orders (status) WHERE status = 'pending';
 ```
 
-| Metric | Before | After |
-|--------|--------|-------|
-| Scan type | | |
-| Execution time (ms) | | |
-| Rows examined | | |
-| Improvement factor | — | |
+| Metric              | Before | After |
+| ------------------- | ------ | ----- |
+| Scan type           |        |       |
+| Execution time (ms) |        |       |
+| Rows examined       |        |       |
+| Improvement factor  | —      |       |
 
 **Explanation:**
 
 > [!NOTE]
-> ***Your Answer***
+> **_Your Answer_**
 >
-> *(Write your answer here.)*
->
->
->
->
-
+> _(Write your answer here.)_
 
 ---
 
 ## Submission Checklist
 
-- [ ] All inline answer fields completed
-
-Before submitting, verify you have:
+**Required**
 
 - [ ] Baseline measurements for all 5 project queries
 - [ ] All 5 indexes created and re-measured
 - [ ] Comparison table filled with before/after data
 - [ ] Recommendation paragraph written
 - [ ] All 8 theory questions answered
+
+**Recommended practice**
+
 - [ ] All 4 EXPLAIN outputs analyzed
 - [ ] Index recommendations for all 10 queries
 - [ ] All 5 performance comparisons completed with explanations

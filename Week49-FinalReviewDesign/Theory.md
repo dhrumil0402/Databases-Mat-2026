@@ -284,7 +284,7 @@ CREATE TABLE order_items (
 CREATE TABLE customers (
     customer_id INTEGER PRIMARY KEY,
     postal_code VARCHAR(5),
-    city VARCHAR(100)  -- transitive dependency: customer_id → postal_code → city
+    city VARCHAR(100)  -- transitive dependency: city depends on postal_code, not on customer_id
 );
 ```
 
@@ -292,11 +292,11 @@ CREATE TABLE customers (
 
 ### 4.4 Boyce-Codd Normal Form (BCNF)
 
-BCNF is a stricter version of 3NF. A table is in BCNF if every determinant is a candidate key. In practice, most tables that are in 3NF are also in BCNF. The exceptions involve tables with multiple overlapping candidate keys — rare in typical application databases.
+BCNF is a stricter version of 3NF. In practice, most tables that are in 3NF are also in BCNF. The exceptions involve tables with multiple overlapping candidate keys — rare in typical application databases.
 
 For this course, achieving 3NF is sufficient.
 
-*Reference: Watt & Eng, Ch. 11–12 — "Normalization".*
+*Reference: Watt & Eng, Ch. 12 — "Normalization".*
 
 ### 4.5 Denormalization
 
@@ -605,10 +605,9 @@ A master glossary of database design terms used throughout this course:
 | **First Normal Form (1NF)** | Every column holds atomic values; no repeating groups |
 | **Second Normal Form (2NF)** | 1NF + no partial dependencies on composite keys |
 | **Third Normal Form (3NF)** | 2NF + no transitive dependencies between non-key columns |
-| **Boyce-Codd Normal Form (BCNF)** | Every determinant is a candidate key — stricter than 3NF |
+| **Boyce-Codd Normal Form (BCNF)** | A stricter form of 3NF. Reaching 3NF is enough for this course |
 | **Normalization** | The process of organizing tables to reduce redundancy and dependency anomalies |
 | **Denormalization** | Deliberately introducing redundancy for performance, with documented justification |
-| **Functional Dependency** | Column B is functionally dependent on column A if each A value determines exactly one B value |
 | **ER Diagram** | A visual model showing entities, their attributes, and relationships between them |
 | **Cardinality** | The number of instances in one entity that relate to instances of another (1:1, 1:N, M:N) |
 | **Participation** | Whether every instance must participate in a relationship (total) or may not (partial) |
@@ -631,7 +630,6 @@ A master glossary of database design terms used throughout this course:
   - Chapter 7: The Relational Data Model
   - Chapter 8: Entity-Relationship Model (review)
   - Chapter 9: Mapping ER Models to Relational Schemas
-  - Chapter 11: Functional Dependencies
   - Chapter 12: Normalization
 
 ### PostgreSQL Documentation

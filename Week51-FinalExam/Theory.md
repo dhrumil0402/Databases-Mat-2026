@@ -55,7 +55,7 @@ You'll be given a schema description and asked to write SQL. Examples:
 
 These ask you to think like a designer:
 - "Given these business requirements, design a normalized schema (3NF)."
-- "Identify the functional dependencies in this table and normalize to BCNF."
+- "This table has redundancy. Find the problems and normalize it to 3NF."
 - "This table has redundancy. What problems can occur? How would you fix it?"
 
 **Tip:** Draw the tables with their columns. Mark PKs and FKs. Check each normal form systematically.
@@ -125,11 +125,10 @@ Use this checklist to guide your revision. For each item, ask yourself: "Can I e
 
 ### Database Design and Normalization (Weeks 45–46)
 
-- [ ] **Functional dependencies** — X → Y means X uniquely determines Y
 - [ ] **1NF** — Atomic values, no repeating groups
-- [ ] **2NF** — No partial dependencies (on part of composite key)
-- [ ] **3NF** — No transitive dependencies (non-key → non-key)
-- [ ] **BCNF** — Every determinant is a candidate key
+- [ ] **2NF** — No partial dependencies (on part of a composite key)
+- [ ] **3NF** — No transitive dependencies (a non-key column depending on another non-key column)
+- [ ] **BCNF** — A stricter form of 3NF. Reaching 3NF is enough for this course
 - [ ] **Denormalization** — When and why to intentionally break normal forms
 - [ ] **ER diagrams** — Entities, attributes, relationships, cardinalities
 
